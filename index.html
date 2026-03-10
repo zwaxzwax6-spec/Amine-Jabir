@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VOLTARC — Redefine Motion</title>
+<title>VOLTARC — Redéfinir le Mouvement</title>
 <meta name="description" content="VOLTARC — Motos et scooters 100% électriques. Puissance brute, zéro émission, design sans compromis.">
-<meta property="og:title" content="VOLTARC — Redefine Motion">
+<meta property="og:title" content="VOLTARC — Redéfinir le Mouvement">
 <meta property="og:description" content="Motos et scooters 100% électriques premium.">
 <meta property="og:image" content="hero-moto.png">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
@@ -139,7 +139,7 @@ nav.scrolled {
 }
 .hero-pre::before { content: ''; width: 30px; height: 1px; background: var(--neon-cyan); }
 .hero-title {
-  font-family: var(--font-display); font-size: clamp(52px,9vw,120px);
+  font-family: var(--font-display); font-size: clamp(42px,7.5vw,100px);
   font-weight: 900; line-height: 0.92; letter-spacing: -3px; margin-bottom: 36px;
   opacity: 0; animation: fadeUp 1s ease 0.6s forwards;
 }
@@ -148,6 +148,7 @@ nav.scrolled {
   background-size: 200% 200%;
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   animation: gradientShift 6s ease-in-out infinite;
+  white-space: nowrap;
 }
 @keyframes gradientShift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 .hero-sub {
@@ -301,23 +302,19 @@ nav.scrolled {
   background: linear-gradient(0deg, var(--bg-card) 0%, transparent 100%); z-index: 1;
 }
 .card-product-img {
-  width: 85%; height: auto; max-height: 190px; object-fit: contain;
-  position: relative; z-index: 1; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
-  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1), filter 0.6s ease;
+  width: 88%; height: auto; max-height: 200px; object-fit: contain;
+  position: relative; z-index: 1;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.6)) brightness(0.92) contrast(1.1);
+  mix-blend-mode: lighten;
+  transition: transform 0.7s cubic-bezier(0.16,1,0.3,1), filter 0.7s ease;
 }
-.vehicle-card:hover .card-product-img { transform: scale(1.08) translateY(-4px); filter: drop-shadow(0 16px 40px rgba(0,229,255,0.15)); }
+.vehicle-card:hover .card-product-img { transform: scale(1.1) translateY(-6px); filter: drop-shadow(0 20px 50px rgba(0,229,255,0.2)) brightness(1) contrast(1.05); }
 .card-image-placeholder {
   font-family: var(--font-display); font-size: 52px; font-weight: 900;
   color: rgba(255,255,255,0.04); letter-spacing: 6px; position: relative; z-index: 1;
   transition: all 0.5s ease; user-select: none;
 }
-.vehicle-card:hover .card-product-img {
-  width: 85%; height: auto; max-height: 190px; object-fit: contain;
-  position: relative; z-index: 1; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
-  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1), filter 0.6s ease;
-}
-.vehicle-card:hover .card-product-img { transform: scale(1.08) translateY(-4px); filter: drop-shadow(0 16px 40px rgba(0,229,255,0.15)); }
-.card-image-placeholder { color: rgba(0,229,255,0.08); letter-spacing: 10px; }
+.vehicle-card:hover .card-image-placeholder { color: rgba(0,229,255,0.08); letter-spacing: 10px; }
 .card-badge {
   position: absolute; top: 18px; right: 18px; z-index: 2;
   font-family: var(--font-mono); font-size: 8px; letter-spacing: 4px;
@@ -442,15 +439,68 @@ nav.scrolled {
 
 /* FOOTER */
 footer { border-top: 1px solid var(--border-subtle); padding: 72px 0 40px; background: var(--bg-deep); }
-.footer-grid { display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 64px; }
-.footer-brand { font-family: var(--font-display); font-size: 18px; font-weight: 900; letter-spacing: 8px; margin-bottom: 20px; }
+.footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 64px; }
+.footer-brand { font-family: var(--font-display); font-weight: 900; letter-spacing: 8px; }
 .footer-brand span { color: var(--neon-cyan); }
 .footer-desc { font-size: 14px; color: var(--text-dim); line-height: 1.8; max-width: 280px; }
 .footer-col-title { font-family: var(--font-display); font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 24px; color: var(--text-primary); }
 .footer-col a { display: block; font-size: 14px; color: var(--text-dim); text-decoration: none; margin-bottom: 14px; transition: all 0.3s ease; }
 .footer-col a:hover { color: var(--neon-cyan); padding-left: 6px; }
-.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 40px; border-top: 1px solid var(--border-subtle); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 40px; border-top: 1px solid var(--border-subtle); gap: 20px; }
 .footer-bottom p { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); letter-spacing: 3px; }
+
+/* LOADER */
+.page-loader {
+  position: fixed; inset: 0; z-index: 10000; background: var(--bg-deep);
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 24px;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+.page-loader.loaded { opacity: 0; visibility: hidden; pointer-events: none; }
+.loader-brand {
+  font-family: var(--font-display); font-size: 28px; font-weight: 900; letter-spacing: 10px;
+  color: var(--text-primary); opacity: 0; animation: loaderFade 0.8s ease 0.2s forwards;
+}
+.loader-brand span { color: var(--neon-cyan); }
+.loader-bar {
+  width: 120px; height: 2px; background: var(--border-subtle); border-radius: 1px; overflow: hidden;
+  opacity: 0; animation: loaderFade 0.6s ease 0.5s forwards;
+}
+.loader-bar-inner { height: 100%; width: 0; background: var(--neon-cyan); animation: loaderProgress 1.2s ease 0.6s forwards; }
+@keyframes loaderFade { to { opacity: 1; } }
+@keyframes loaderProgress { to { width: 100%; } }
+
+/* GRAIN */
+.grain {
+  position: fixed; inset: 0; z-index: 9998; pointer-events: none; opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat; background-size: 200px;
+}
+
+/* HAMBURGER */
+.nav-hamburger {
+  display: none; width: 32px; height: 20px; position: relative; cursor: pointer;
+  flex-direction: column; justify-content: space-between; z-index: 1001;
+}
+.nav-hamburger span {
+  display: block; width: 100%; height: 1.5px; background: var(--text-primary);
+  transition: all 0.4s cubic-bezier(0.16,1,0.3,1); transform-origin: center;
+}
+.nav-hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+.nav-hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+.mobile-menu {
+  display: none; position: fixed; inset: 0; z-index: 999; background: rgba(4,4,8,0.97);
+  backdrop-filter: blur(40px); flex-direction: column; align-items: center; justify-content: center; gap: 36px;
+  opacity: 0; visibility: hidden; transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.mobile-menu.active { opacity: 1; visibility: visible; }
+.mobile-menu a {
+  font-family: var(--font-display); font-size: 18px; font-weight: 700; letter-spacing: 6px;
+  text-transform: uppercase; color: var(--text-secondary); text-decoration: none;
+  transition: all 0.3s ease; position: relative;
+}
+.mobile-menu a:hover { color: var(--neon-cyan); }
+.mobile-menu .btn-primary { margin-top: 20px; }
 
 .scanlines {
   position: fixed; inset: 0; z-index: 9999; pointer-events: none;
@@ -475,7 +525,10 @@ footer { border-top: 1px solid var(--border-subtle); padding: 72px 0 40px; backg
 @media (max-width: 768px) {
   .container { padding: 0 20px; }
   nav { padding: 16px 20px; }
-  .nav-links { display: none; }
+  .nav-links { display: none !important; }
+  .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
+  .mobile-menu { display: flex; }
   .hero-content { padding: 0 20px; }
   .vehicle-grid { grid-template-columns: 1fr; }
   .tech-grid { grid-template-columns: 1fr; }
@@ -490,7 +543,23 @@ footer { border-top: 1px solid var(--border-subtle); padding: 72px 0 40px; backg
 </style>
 </head>
 <body>
+<!-- LOADER -->
+<div class="page-loader" id="pageLoader">
+  <div class="loader-brand">VOLT<span>ARC</span></div>
+  <div class="loader-bar"><div class="loader-bar-inner"></div></div>
+</div>
+
+<div class="grain"></div>
 <div class="scanlines"></div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#motos" class="mobile-link">Motos</a>
+  <a href="#scooters" class="mobile-link">Scooters</a>
+  <a href="#tech" class="mobile-link">Technologie</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+  <a href="#contact" class="btn-primary">Demander un devis</a>
+</div>
 
 <nav id="mainNav">
   <a href="#" class="nav-logo">VOLT<span>ARC</span></a>
@@ -501,6 +570,7 @@ footer { border-top: 1px solid var(--border-subtle); padding: 72px 0 40px; backg
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="#contact" class="nav-cta"><span>Demander un devis</span></a>
+  <div class="nav-hamburger" id="navHamburger"><span></span><span></span><span></span></div>
 </nav>
 
 <!-- HERO -->
@@ -511,15 +581,15 @@ footer { border-top: 1px solid var(--border-subtle); padding: 72px 0 40px; backg
   <div class="hero-overlay"></div>
   <div class="hero-particles"></div>
   <div class="hero-content">
-    <p class="hero-pre">Electric Performance</p>
-    <h1 class="hero-title">REDEFINE<br><span class="accent">MOTION</span></h1>
+    <p class="hero-pre">Performance Électrique</p>
+    <h1 class="hero-title">REDÉFINIR<br><span class="accent">LE MOUVEMENT</span></h1>
     <p class="hero-sub">Motos et scooters 100% électriques. Puissance brute, zéro émission, design sans compromis.</p>
     <div class="hero-ctas">
       <a href="#motos" class="btn-primary">Explorer la gamme</a>
       <a href="#tech" class="btn-ghost">Notre technologie</a>
     </div>
   </div>
-  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+  <div class="hero-scroll"><span>Défiler</span><div class="scroll-line"></div></div>
 </section>
 
 <!-- STATS -->
@@ -540,7 +610,7 @@ footer { border-top: 1px solid var(--border-subtle); padding: 72px 0 40px; backg
     <div class="philosophy-grid">
       <div class="philosophy-visual reveal">
         <img src="rider-lifestyle.png" alt="VOLTARC rider" />
-        <div class="visual-tag">// Born to ride</div>
+        <div class="visual-tag">// Né pour rouler</div>
       </div>
       <div class="philosophy-text">
         <div class="section-label reveal">Notre vision</div>
@@ -556,14 +626,14 @@ footer { border-top: 1px solid var(--border-subtle); padding: 72px 0 40px; backg
 <section class="catalogue" id="motos">
   <div class="container">
     <div class="catalogue-header">
-      <div><div class="section-label reveal">Collection</div><h2 class="section-title reveal reveal-delay-1">Electric<br>Motorcycles</h2></div>
+      <div><div class="section-label reveal">Collection</div><h2 class="section-title reveal reveal-delay-1">Motos<br>Électriques</h2></div>
       <p class="reveal reveal-delay-2">Puissance brute et adrénaline pure. Conçues pour dominer la route.</p>
     </div>
     <div class="vehicle-grid">
-      <div class="vehicle-card reveal"><div class="card-image"><div class="card-badge">Flagship</div><img src="r1.png" alt="VOLTARC R1" class="card-product-img" /></div><div class="card-body"><div class="card-model">R1 SERIES</div><div class="card-type">Sport / Performance</div><div class="card-specs"><div class="spec-item"><div class="spec-value">10<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">120<span class="spec-unit">km/h</span></div><div class="spec-label">Vitesse</div></div><div class="spec-item"><div class="spec-value">LED</div><div class="spec-label">Display</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
-      <div class="vehicle-card reveal reveal-delay-1"><div class="card-image"><div class="card-badge">Sport</div><img src="g8.png" alt="VOLTARC G8" class="card-product-img" /></div><div class="card-body"><div class="card-model">G8 SERIES</div><div class="card-type">Sport / Touring</div><div class="card-specs"><div class="spec-item"><div class="spec-value">10<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">120<span class="spec-unit">km/h</span></div><div class="spec-label">Vitesse</div></div><div class="spec-item"><div class="spec-value">LED</div><div class="spec-label">Display</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
-      <div class="vehicle-card reveal reveal-delay-2"><div class="card-image"><div class="card-badge">Roadster</div><img src="t4.png" alt="VOLTARC T4" class="card-product-img" /></div><div class="card-body"><div class="card-model">T4 SERIES</div><div class="card-type">Roadster / Street</div><div class="card-specs"><div class="spec-item"><div class="spec-value">10<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">120<span class="spec-unit">km/h</span></div><div class="spec-label">Vitesse</div></div><div class="spec-item"><div class="spec-value">LED</div><div class="spec-label">Display</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
-      <div class="vehicle-card reveal reveal-delay-3"><div class="card-image"><div class="card-badge">Racing</div><img src="rz.png" alt="VOLTARC RZ" class="card-product-img" /></div><div class="card-body"><div class="card-model">RZ SERIES</div><div class="card-type">Racing / Track</div><div class="card-specs"><div class="spec-item"><div class="spec-value">10<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">120<span class="spec-unit">km/h</span></div><div class="spec-label">Vitesse</div></div><div class="spec-item"><div class="spec-value">LED</div><div class="spec-label">Display</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
+      <div class="vehicle-card reveal"><div class="card-image"><div class="card-badge">Phare</div><img src="r1.png" alt="VOLTARC R1" class="card-product-img" /></div><div class="card-body"><div class="card-model">R1 SÉRIE</div><div class="card-type">Sport / Performance</div><div class="card-specs"><div class="spec-item"><div class="spec-value">10<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">120<span class="spec-unit">km/h</span></div><div class="spec-label">Vitesse</div></div><div class="spec-item"><div class="spec-value">LED</div><div class="spec-label">Écran</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
+      <div class="vehicle-card reveal reveal-delay-1"><div class="card-image"><div class="card-badge">Sport</div><img src="g8.png" alt="VOLTARC G8" class="card-product-img" /></div><div class="card-body"><div class="card-model">G8 SÉRIE</div><div class="card-type">Sport / Touring</div><div class="card-specs"><div class="spec-item"><div class="spec-value">10<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">120<span class="spec-unit">km/h</span></div><div class="spec-label">Vitesse</div></div><div class="spec-item"><div class="spec-value">LED</div><div class="spec-label">Écran</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
+      <div class="vehicle-card reveal reveal-delay-2"><div class="card-image"><div class="card-badge">Roadster</div><img src="t4.png" alt="VOLTARC T4" class="card-product-img" /></div><div class="card-body"><div class="card-model">T4 SÉRIE</div><div class="card-type">Roadster / Rue</div><div class="card-specs"><div class="spec-item"><div class="spec-value">10<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">120<span class="spec-unit">km/h</span></div><div class="spec-label">Vitesse</div></div><div class="spec-item"><div class="spec-value">LED</div><div class="spec-label">Écran</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
+      <div class="vehicle-card reveal reveal-delay-3"><div class="card-image"><div class="card-badge">Course</div><img src="rz.png" alt="VOLTARC RZ" class="card-product-img" /></div><div class="card-body"><div class="card-model">RZ SÉRIE</div><div class="card-type">Course / Circuit</div><div class="card-specs"><div class="spec-item"><div class="spec-value">10<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">120<span class="spec-unit">km/h</span></div><div class="spec-label">Vitesse</div></div><div class="spec-item"><div class="spec-value">LED</div><div class="spec-label">Écran</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
     </div>
   </div>
 </section>
@@ -572,9 +642,10 @@ footer { border-top: 1px solid var(--border-subtle); padding: 72px 0 40px; backg
 <section class="immersive-banner">
   <img src="scooter-urban.png" alt="VOLTARC Scooter" />
   <div class="immersive-banner-content">
-    <div class="section-label">Urban Mobility</div>
+    <div class="section-label">Mobilité Urbaine</div>
     <h2>La ville vous<br>appartient</h2>
     <p>Faufilez-vous, stationnez partout, rechargez chez vous. Le trajet quotidien réinventé.</p>
+    <a href="#scooters" class="btn-primary" style="margin-top:28px; display:inline-block;">Voir les scooters</a>
   </div>
 </section>
 
@@ -582,15 +653,15 @@ footer { border-top: 1px solid var(--border-subtle); padding: 72px 0 40px; backg
 <section class="catalogue" id="scooters" style="background:var(--bg-dark);">
   <div class="container">
     <div class="catalogue-header">
-      <div><div class="section-label reveal">Collection</div><h2 class="section-title reveal reveal-delay-1">Electric<br>Scooters</h2></div>
+      <div><div class="section-label reveal">Collection</div><h2 class="section-title reveal reveal-delay-1">Scooters<br>Électriques</h2></div>
       <p class="reveal reveal-delay-2">Agilité urbaine, style affirmé. Le futur du trajet quotidien.</p>
     </div>
     <div class="vehicle-grid">
-      <div class="vehicle-card reveal"><div class="card-image"><div class="card-badge">Premium</div><img src="tango.png" alt="VOLTARC Tango" class="card-product-img" /></div><div class="card-body"><div class="card-model">TANGO</div><div class="card-type">Grand Tourer / Premium</div><div class="card-specs"><div class="spec-item"><div class="spec-value">4<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">90<span class="spec-unit">km</span></div><div class="spec-label">Autonomie</div></div><div class="spec-item"><div class="spec-value">72<span class="spec-unit">V</span></div><div class="spec-label">Batterie</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
+      <div class="vehicle-card reveal"><div class="card-image"><div class="card-badge">Premium</div><img src="tango.png" alt="VOLTARC Tango" class="card-product-img" /></div><div class="card-body"><div class="card-model">TANGO</div><div class="card-type">Grand Tourisme / Premium</div><div class="card-specs"><div class="spec-item"><div class="spec-value">4<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">90<span class="spec-unit">km</span></div><div class="spec-label">Autonomie</div></div><div class="spec-item"><div class="spec-value">72<span class="spec-unit">V</span></div><div class="spec-label">Batterie</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
       <div class="vehicle-card reveal reveal-delay-1"><div class="card-image"><div class="card-badge">Performance</div><img src="tsl.png" alt="VOLTARC TSL" class="card-product-img" /></div><div class="card-body"><div class="card-model">TSL</div><div class="card-type">Sport / Performance</div><div class="card-specs"><div class="spec-item"><div class="spec-value">4<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">72<span class="spec-unit">V</span></div><div class="spec-label">Batterie</div></div><div class="spec-item"><div class="spec-value">50<span class="spec-unit">A</span></div><div class="spec-label">Contrôleur</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
-      <div class="vehicle-card reveal reveal-delay-2"><div class="card-image"><div class="card-badge">Iconic</div><img src="vespa.png" alt="VOLTARC Vespa Style" class="card-product-img" /></div><div class="card-body"><div class="card-model">VESPA STYLE</div><div class="card-type">Retro / Urban</div><div class="card-specs"><div class="spec-item"><div class="spec-value">1.5<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">75<span class="spec-unit">km</span></div><div class="spec-label">Autonomie</div></div><div class="spec-item"><div class="spec-value">LED</div><div class="spec-label">Display</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
-      <div class="vehicle-card reveal reveal-delay-3"><div class="card-image"><div class="card-badge">Urban</div><img src="h1.png" alt="VOLTARC H1" class="card-product-img" /></div><div class="card-body"><div class="card-model">H1</div><div class="card-type">Urban / Commuter</div><div class="card-specs"><div class="spec-item"><div class="spec-value">1.5<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">90<span class="spec-unit">km</span></div><div class="spec-label">Autonomie</div></div><div class="spec-item"><div class="spec-value">LCD</div><div class="spec-label">Display</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
-      <div class="vehicle-card reveal"><div class="card-image"><div class="card-badge">Bestseller</div><img src="lg.png" alt="VOLTARC LG" class="card-product-img" /></div><div class="card-body"><div class="card-model">LG SERIES</div><div class="card-type">Polyvalent / Confort</div><div class="card-specs"><div class="spec-item"><div class="spec-value">1.5<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">75<span class="spec-unit">km</span></div><div class="spec-label">Autonomie</div></div><div class="spec-item"><div class="spec-value">LED</div><div class="spec-label">Display</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
+      <div class="vehicle-card reveal reveal-delay-2"><div class="card-image"><div class="card-badge">Iconique</div><img src="vespa.png" alt="VOLTARC Vespa Rétro" class="card-product-img" /></div><div class="card-body"><div class="card-model">VESPA RÉTRO</div><div class="card-type">Rétro / Urbain</div><div class="card-specs"><div class="spec-item"><div class="spec-value">1.5<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">75<span class="spec-unit">km</span></div><div class="spec-label">Autonomie</div></div><div class="spec-item"><div class="spec-value">LED</div><div class="spec-label">Écran</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
+      <div class="vehicle-card reveal reveal-delay-3"><div class="card-image"><div class="card-badge">Urbain</div><img src="h1.png" alt="VOLTARC H1" class="card-product-img" /></div><div class="card-body"><div class="card-model">H1</div><div class="card-type">Urbain / Quotidien</div><div class="card-specs"><div class="spec-item"><div class="spec-value">1.5<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">90<span class="spec-unit">km</span></div><div class="spec-label">Autonomie</div></div><div class="spec-item"><div class="spec-value">LCD</div><div class="spec-label">Écran</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
+      <div class="vehicle-card reveal"><div class="card-image"><div class="card-badge">Populaire</div><img src="lg.png" alt="VOLTARC LG" class="card-product-img" /></div><div class="card-body"><div class="card-model">LG SÉRIE</div><div class="card-type">Polyvalent / Confort</div><div class="card-specs"><div class="spec-item"><div class="spec-value">1.5<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">75<span class="spec-unit">km</span></div><div class="spec-label">Autonomie</div></div><div class="spec-item"><div class="spec-value">LED</div><div class="spec-label">Écran</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
       <div class="vehicle-card reveal reveal-delay-1"><div class="card-image"><div class="card-badge">Touring</div><img src="rm.png" alt="VOLTARC RM" class="card-product-img" /></div><div class="card-body"><div class="card-model">RM</div><div class="card-type">Touring / Confort</div><div class="card-specs"><div class="spec-item"><div class="spec-value">2<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">100<span class="spec-unit">km</span></div><div class="spec-label">Autonomie</div></div><div class="spec-item"><div class="spec-value">72<span class="spec-unit">V</span></div><div class="spec-label">Batterie</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
     </div>
   </div>
@@ -613,9 +684,9 @@ footer { border-top: 1px solid var(--border-subtle); padding: 72px 0 40px; backg
       <div class="tech-item reveal"><div class="tech-number">01</div><div class="tech-item-title">Moteurs Brushless</div><div class="tech-item-desc">Moteurs haute performance de 450W à 10 000W. Couple instantané, silence absolu, fiabilité extrême.</div></div>
       <div class="tech-item reveal reveal-delay-1"><div class="tech-number">02</div><div class="tech-item-title">Batterie Lithium</div><div class="tech-item-desc">Packs lithium dernière génération avec système de gestion intelligent. Jusqu'à 150 km d'autonomie.</div></div>
       <div class="tech-item reveal reveal-delay-2"><div class="tech-number">03</div><div class="tech-item-title">Freinage Régénératif</div><div class="tech-item-desc">Récupération d'énergie au freinage. Freins à disque avant et arrière sur chaque modèle.</div></div>
-      <div class="tech-item reveal reveal-delay-3"><div class="tech-number">04</div><div class="tech-item-title">Dashboards LED</div><div class="tech-item-desc">Tableaux de bord numériques LED/LCD avec connectivité. Toutes les données en un coup d'œil.</div></div>
+      <div class="tech-item reveal reveal-delay-3"><div class="tech-number">04</div><div class="tech-item-title">Tableaux de Bord</div><div class="tech-item-desc">Écrans numériques LED/LCD avec connectivité. Toutes les données en un coup d'œil.</div></div>
       <div class="tech-item reveal reveal-delay-4"><div class="tech-number">05</div><div class="tech-item-title">Charge Rapide</div><div class="tech-item-desc">Chargeur 5A de série. Compatible Type 2 en option. Charge complète en quelques heures.</div></div>
-      <div class="tech-item reveal reveal-delay-5"><div class="tech-number">06</div><div class="tech-item-title">Démarrage Intelligent</div><div class="tech-item-desc">One-button start, détection automatique du faisceau, système anti-démarrage intempestif.</div></div>
+      <div class="tech-item reveal reveal-delay-5"><div class="tech-number">06</div><div class="tech-item-title">Démarrage Intelligent</div><div class="tech-item-desc">Démarrage par bouton, détection automatique du faisceau, système anti-démarrage intempestif.</div></div>
     </div>
   </div>
 </section>
@@ -628,9 +699,9 @@ footer { border-top: 1px solid var(--border-subtle); padding: 72px 0 40px; backg
     <div class="custom-options">
       <div class="custom-option reveal"><span class="custom-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span><div class="custom-option-title">Charge Type 2</div><div class="custom-option-desc">Recharge universelle 25A</div></div>
       <div class="custom-option reveal reveal-delay-1"><span class="custom-icon"><svg viewBox="0 0 24 24"><path d="M12 2c0 4-4 6-4 10a4 4 0 0 0 8 0c0-4-4-6-4-10z"/><path d="M12 22v-4"/></svg></span><div class="custom-option-title">Poignées chauffantes</div><div class="custom-option-desc">Confort quatre saisons</div></div>
-      <div class="custom-option reveal reveal-delay-2"><span class="custom-icon"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="14" r="4"/><line x1="12" y1="6" x2="12.01" y2="6"/></svg></span><div class="custom-option-title">Bluetooth Speaker</div><div class="custom-option-desc">Son intégré au guidon</div></div>
+      <div class="custom-option reveal reveal-delay-2"><span class="custom-icon"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="14" r="4"/><line x1="12" y1="6" x2="12.01" y2="6"/></svg></span><div class="custom-option-title">Enceinte Bluetooth</div><div class="custom-option-desc">Son intégré au guidon</div></div>
       <div class="custom-option reveal reveal-delay-3"><span class="custom-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></span><div class="custom-option-title">Faisceau Auto</div><div class="custom-option-desc">Détection automatique</div></div>
-      <div class="custom-option reveal reveal-delay-4"><span class="custom-icon"><svg viewBox="0 0 24 24"><path d="M18.364 5.636a9 9 0 0 1 0 12.728M15.536 8.464a5 5 0 0 1 0 7.072"/><circle cx="6" cy="12" r="3"/><line x1="8.5" y1="10.5" x2="15.5" y2="10.5"/></svg></span><div class="custom-option-title">One-Touch Start</div><div class="custom-option-desc">Démarrage d'un geste</div></div>
+      <div class="custom-option reveal reveal-delay-4"><span class="custom-icon"><svg viewBox="0 0 24 24"><path d="M18.364 5.636a9 9 0 0 1 0 12.728M15.536 8.464a5 5 0 0 1 0 7.072"/><circle cx="6" cy="12" r="3"/><line x1="8.5" y1="10.5" x2="15.5" y2="10.5"/></svg></span><div class="custom-option-title">Démarrage Tactile</div><div class="custom-option-desc">Démarrage d'un geste</div></div>
     </div>
   </div>
 </section>
@@ -648,17 +719,27 @@ footer { border-top: 1px solid var(--border-subtle); padding: 72px 0 40px; backg
 <!-- FOOTER -->
 <footer>
   <div class="container">
+    <div style="text-align:center; margin-bottom:64px;">
+      <div class="footer-brand" style="font-size:24px; margin-bottom:12px;">VOLT<span>ARC</span></div>
+      <p style="font-family:var(--font-mono); font-size:9px; letter-spacing:6px; text-transform:uppercase; color:var(--text-dim);">Redéfinir le Mouvement™</p>
+      <div style="width:60px; height:1px; background:var(--neon-cyan); margin:24px auto 0; opacity:0.4;"></div>
+    </div>
     <div class="footer-grid">
-      <div><div class="footer-brand">VOLT<span>ARC</span></div><p class="footer-desc">Redefine Motion. Motos et scooters 100% électriques pour une mobilité sans compromis.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Motos</div><a href="#">R1 Series</a><a href="#">G8 Series</a><a href="#">T4 Series</a><a href="#">RZ Series</a></div>
-      <div class="footer-col"><div class="footer-col-title">Scooters</div><a href="#">Tango</a><a href="#">TSL</a><a href="#">Vespa Style</a><a href="#">H1 / LG / RM</a></div>
+      <div><p class="footer-desc">Motos et scooters 100% électriques pour une mobilité sans compromis. Conçus pour ceux qui refusent de choisir entre performance et responsabilité.</p></div>
+      <div class="footer-col"><div class="footer-col-title">Motos</div><a href="#">R1 Série</a><a href="#">G8 Série</a><a href="#">T4 Série</a><a href="#">RZ Série</a></div>
+      <div class="footer-col"><div class="footer-col-title">Scooters</div><a href="#">Tango</a><a href="#">TSL</a><a href="#">Vespa Rétro</a><a href="#">H1 / LG / RM</a></div>
       <div class="footer-col"><div class="footer-col-title">Entreprise</div><a href="#">Notre vision</a><a href="#">Technologie</a><a href="#">Personnalisation</a><a href="#">Contact</a></div>
     </div>
-    <div class="footer-bottom"><p>© 2026 VOLTARC — Tous droits réservés</p><p>Redefine Motion™</p></div>
+    <div class="footer-bottom"><p>© 2026 VOLTARC — Tous droits réservés</p><p style="color:var(--neon-cyan); opacity:0.4;">⚡</p><p>Redéfinir le Mouvement™</p></div>
   </div>
 </footer>
 
 <script>
+// Page loader
+window.addEventListener('load', () => {
+  setTimeout(() => { document.getElementById('pageLoader').classList.add('loaded'); }, 1800);
+});
+
 // Scroll reveal
 const obs = new IntersectionObserver(e => { e.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
@@ -666,6 +747,22 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 // Nav
 const nav = document.getElementById('mainNav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.pageYOffset > 80));
+
+// Hamburger
+const hamburger = document.getElementById('navHamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  mobileMenu.classList.toggle('active');
+  document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+});
+document.querySelectorAll('.mobile-menu a').forEach(a => {
+  a.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+});
 
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(a => {
