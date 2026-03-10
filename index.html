@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VOLTARC — Redefine Motion</title>
+<meta name="description" content="VOLTARC — Motos et scooters 100% électriques. Puissance brute, zéro émission, design sans compromis.">
+<meta property="og:title" content="VOLTARC — Redefine Motion">
+<meta property="og:description" content="Motos et scooters 100% électriques premium.">
+<meta property="og:image" content="assets/img/hero-moto.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --bg-deep: #040408;
+  --bg-dark: #080812;
+  --bg-card: #0c0c18;
+  --bg-card-hover: #10102a;
+  --neon-cyan: #00e5ff;
+  --neon-cyan-dim: #00e5ff40;
+  --neon-cyan-glow: #00e5ff15;
+  --neon-magenta: #ff0090;
+  --neon-magenta-dim: #ff009030;
+  --text-primary: #eaeaf4;
+  --text-secondary: #8585a8;
+  --text-dim: #4a4a6a;
+  --border-subtle: #16162a;
+  --border-hover: #00e5ff30;
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'Rajdhani', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--neon-cyan-dim) var(--bg-deep); }
+body { font-family: var(--font-body); background: var(--bg-deep); color: var(--text-primary); overflow-x: hidden; line-height: 1.6; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--neon-cyan-dim); border-radius: 3px; }
+
+.container { max-width: 1400px; margin: 0 auto; padding: 0 48px; }
+
+.section-label {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 7px;
+  text-transform: uppercase; color: var(--neon-cyan); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 18px;
+}
+.section-label::before { content: ''; width: 50px; height: 1px; background: linear-gradient(90deg, var(--neon-cyan), transparent); }
+.section-title {
+  font-family: var(--font-display); font-size: clamp(32px, 5vw, 60px);
+  font-weight: 800; line-height: 1.08; letter-spacing: -1px; margin-bottom: 28px;
+}
+.glow-text { text-shadow: 0 0 30px var(--neon-cyan-dim), 0 0 60px var(--neon-cyan-glow); }
+
+/* REVEALS */
+.reveal { opacity: 0; transform: translateY(60px); transition: opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .12s; }
+.reveal-delay-2 { transition-delay: .24s; }
+.reveal-delay-3 { transition-delay: .36s; }
+.reveal-delay-4 { transition-delay: .48s; }
+.reveal-delay-5 { transition-delay: .6s; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: transparent; transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+nav.scrolled {
+  padding: 16px 48px; background: rgba(4,4,8,0.92);
+  backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 40px rgba(0,0,0,0.5);
+}
+.nav-logo { font-family: var(--font-display); font-size: 20px; font-weight: 900; letter-spacing: 8px; color: var(--text-primary); text-decoration: none; }
+.nav-logo span { color: var(--neon-cyan); text-shadow: 0 0 20px var(--neon-cyan-dim); }
+.nav-links { display: flex; gap: 44px; list-style: none; }
+.nav-links a {
+  font-family: var(--font-body); font-size: 13px; font-weight: 600; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--text-secondary); text-decoration: none;
+  transition: all 0.3s ease; position: relative; padding-bottom: 4px;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
+  background: var(--neon-cyan); box-shadow: 0 0 10px var(--neon-cyan); transition: width 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.nav-links a:hover { color: var(--neon-cyan); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  font-family: var(--font-display); font-size: 10px; font-weight: 700; letter-spacing: 4px;
+  padding: 14px 32px; background: transparent; border: 1px solid var(--neon-cyan);
+  color: var(--neon-cyan); text-decoration: none; text-transform: uppercase;
+  transition: all 0.4s ease; position: relative; overflow: hidden;
+}
+.nav-cta::before { content: ''; position: absolute; inset: 0; background: var(--neon-cyan); transform: scaleX(0); transform-origin: left; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+.nav-cta:hover { color: var(--bg-deep); }
+.nav-cta:hover::before { transform: scaleX(1); }
+.nav-cta span { position: relative; z-index: 1; }
+
+/* HERO */
+.hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; z-index: 0; }
+.hero-bg img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center 30%; opacity: 0.55;
+  animation: heroZoom 20s ease-in-out infinite alternate;
+}
+@keyframes heroZoom {
+  0% { transform: scale(1); filter: brightness(0.5) contrast(1.2); }
+  100% { transform: scale(1.08); filter: brightness(0.55) contrast(1.15); }
+}
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(4,4,8,0.7) 0%, rgba(4,4,8,0.1) 35%, rgba(4,4,8,0.6) 70%, rgba(4,4,8,0.95) 100%),
+    linear-gradient(90deg, rgba(4,4,8,0.9) 0%, rgba(4,4,8,0.3) 35%, transparent 60%);
+}
+.hero-particles {
+  position: absolute; inset: 0; z-index: 2;
+  background-image: radial-gradient(1px 1px at 20% 30%, rgba(0,229,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 60%, rgba(0,229,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 80%, rgba(255,0,144,0.15) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 20%, rgba(0,229,255,0.25) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 55% 15%, rgba(0,229,255,0.35) 0%, transparent 100%);
+  animation: particleDrift 12s ease-in-out infinite alternate;
+}
+@keyframes particleDrift {
+  0% { transform: translateY(0) translateX(0); opacity: 0.6; }
+  100% { transform: translateY(-15px) translateX(8px); opacity: 1; }
+}
+.hero-content { position: relative; z-index: 3; max-width: 780px; padding: 0 0 0 48px; }
+.hero-pre {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 8px;
+  text-transform: uppercase; color: var(--neon-cyan); margin-bottom: 28px;
+  opacity: 0; animation: fadeUp 1s ease 0.4s forwards;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-pre::before { content: ''; width: 30px; height: 1px; background: var(--neon-cyan); }
+.hero-title {
+  font-family: var(--font-display); font-size: clamp(52px,9vw,120px);
+  font-weight: 900; line-height: 0.92; letter-spacing: -3px; margin-bottom: 36px;
+  opacity: 0; animation: fadeUp 1s ease 0.6s forwards;
+}
+.hero-title .accent {
+  background: linear-gradient(135deg, var(--neon-cyan) 0%, #00ff88 50%, var(--neon-cyan) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: gradientShift 6s ease-in-out infinite;
+}
+@keyframes gradientShift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+.hero-sub {
+  font-size: 21px; font-weight: 300; color: var(--text-secondary); max-width: 500px;
+  letter-spacing: 0.5px; line-height: 1.7; margin-bottom: 52px;
+  opacity: 0; animation: fadeUp 1s ease 0.8s forwards;
+}
+.hero-ctas { display: flex; gap: 16px; opacity: 0; animation: fadeUp 1s ease 1s forwards; flex-wrap: wrap; }
+.btn-primary {
+  font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; padding: 20px 48px; background: var(--neon-cyan); color: var(--bg-deep);
+  border: none; cursor: pointer; text-decoration: none; transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+  position: relative; overflow: hidden;
+}
+.btn-primary::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transform: translateX(-100%); transition: transform 0.6s ease;
+}
+.btn-primary:hover { box-shadow: 0 0 40px var(--neon-cyan-dim), 0 8px 32px rgba(0,229,255,0.2); transform: translateY(-3px); }
+.btn-primary:hover::after { transform: translateX(100%); }
+.btn-ghost {
+  font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; padding: 20px 48px; background: rgba(255,255,255,0.03);
+  color: var(--text-secondary); border: 1px solid var(--border-subtle);
+  cursor: pointer; text-decoration: none; transition: all 0.4s ease; backdrop-filter: blur(10px);
+}
+.btn-ghost:hover { color: var(--text-primary); border-color: var(--text-secondary); background: rgba(255,255,255,0.06); }
+.hero-scroll {
+  position: absolute; bottom: 44px; left: 50%; transform: translateX(-50%); z-index: 3;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  color: var(--text-dim); font-family: var(--font-mono); font-size: 9px; letter-spacing: 5px;
+  text-transform: uppercase; animation: fadeUp 1s ease 1.4s forwards; opacity: 0;
+}
+.scroll-line { width: 1px; height: 50px; background: linear-gradient(180deg, var(--neon-cyan), transparent); animation: scrollPulse 2.5s ease-in-out infinite; }
+@keyframes scrollPulse { 0%,100% { opacity: 0.2; transform: scaleY(1); } 50% { opacity: 0.8; transform: scaleY(0.6); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+/* STATS */
+.stats-bar {
+  border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);
+  padding: 72px 0; background: var(--bg-dark); position: relative;
+}
+.stats-bar::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, var(--neon-cyan-glow), transparent); opacity: 0.5;
+}
+.stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; position: relative; }
+.stat-item { text-align: center; padding: 0 20px; position: relative; }
+.stat-item::after { content: ''; position: absolute; right: 0; top: 15%; height: 70%; width: 1px; background: linear-gradient(180deg, transparent, var(--border-subtle), transparent); }
+.stat-item:last-child::after { display: none; }
+.stat-number {
+  font-family: var(--font-display); font-size: clamp(40px,5vw,64px);
+  font-weight: 900; color: var(--neon-cyan); line-height: 1; margin-bottom: 6px;
+  text-shadow: 0 0 30px var(--neon-cyan-dim);
+}
+.stat-unit { font-family: var(--font-mono); font-size: 13px; color: var(--neon-cyan); opacity: 0.5; }
+.stat-label { font-size: 13px; color: var(--text-dim); letter-spacing: 3px; text-transform: uppercase; margin-top: 10px; }
+
+/* PHILOSOPHY */
+.philosophy { padding: 160px 0; }
+.philosophy-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 100px; align-items: center; }
+.philosophy-visual {
+  position: relative; height: 600px; overflow: hidden;
+  border: 1px solid var(--border-subtle); transition: border-color 0.5s ease;
+}
+.philosophy-visual:hover { border-color: var(--border-hover); }
+.philosophy-visual img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.8) contrast(1.15) saturate(1.1);
+  transition: transform 1.2s cubic-bezier(0.16,1,0.3,1), filter 1.2s ease;
+}
+.philosophy-visual:hover img { transform: scale(1.06); filter: brightness(0.85) contrast(1.1) saturate(1.2); }
+.philosophy-visual::before {
+  content: ''; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, transparent 50%, rgba(4,4,8,0.5) 100%);
+}
+.philosophy-visual::after {
+  content: ''; position: absolute; inset: 6px; border: 1px solid var(--neon-cyan-dim);
+  z-index: 2; opacity: 0; transition: opacity 0.5s ease; pointer-events: none;
+}
+.philosophy-visual:hover::after { opacity: 1; }
+.visual-tag {
+  position: absolute; bottom: 24px; left: 24px; z-index: 3;
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 5px;
+  text-transform: uppercase; color: var(--neon-cyan);
+  background: rgba(4,4,8,0.85); backdrop-filter: blur(16px);
+  padding: 10px 20px; border: 1px solid var(--neon-cyan-dim);
+}
+.philosophy-text p { font-size: 18px; font-weight: 300; color: var(--text-secondary); line-height: 1.85; margin-bottom: 24px; }
+.philosophy-text p strong { color: var(--text-primary); font-weight: 600; }
+
+/* IMMERSIVE BANNER */
+.immersive-banner {
+  position: relative; height: 75vh; min-height: 550px; overflow: hidden;
+  border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);
+}
+.immersive-banner img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center 35%;
+  filter: brightness(0.5) contrast(1.2) saturate(1.1); transition: transform 8s ease;
+}
+.immersive-banner:hover img { transform: scale(1.04); }
+.immersive-banner::after {
+  content: ''; position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(4,4,8,0.4) 0%, rgba(4,4,8,0.05) 40%, rgba(4,4,8,0.6) 80%, rgba(4,4,8,0.9) 100%),
+    linear-gradient(90deg, rgba(4,4,8,0.7) 0%, transparent 50%);
+}
+.immersive-banner-content { position: absolute; bottom: 100px; left: 80px; z-index: 2; max-width: 520px; }
+.immersive-banner-content .section-label { margin-bottom: 16px; }
+.immersive-banner-content h2 {
+  font-family: var(--font-display); font-size: clamp(30px,4vw,48px);
+  font-weight: 800; line-height: 1.1; margin-bottom: 20px;
+}
+.immersive-banner-content p { font-size: 17px; color: var(--text-secondary); font-weight: 300; line-height: 1.7; }
+
+/* CATALOGUE */
+.catalogue { padding: 140px 0; }
+.catalogue-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 72px; }
+.catalogue-header p { font-size: 15px; color: var(--text-dim); max-width: 360px; text-align: right; line-height: 1.7; }
+.vehicle-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 20px; }
+
+.vehicle-card {
+  background: var(--bg-card); border: 1px solid var(--border-subtle);
+  position: relative; overflow: hidden; cursor: pointer;
+  transition: all 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.vehicle-card:hover {
+  border-color: var(--border-hover); transform: translateY(-10px);
+  box-shadow: 0 30px 80px rgba(0,229,255,0.06), 0 0 0 1px var(--border-hover);
+}
+.vehicle-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent 10%, var(--neon-cyan) 50%, transparent 90%);
+  opacity: 0; transition: opacity 0.5s ease; z-index: 3;
+}
+.vehicle-card:hover::before { opacity: 1; }
+.vehicle-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at top, var(--neon-cyan-glow), transparent 70%);
+  opacity: 0; transition: opacity 0.5s ease; pointer-events: none;
+}
+.vehicle-card:hover::after { opacity: 1; }
+.card-image {
+  position: relative; height: 230px;
+  background: linear-gradient(135deg, #0e0e28 0%, #080814 40%, #140a22 100%);
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.card-image::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 70%;
+  background: linear-gradient(0deg, var(--bg-card) 0%, transparent 100%); z-index: 1;
+}
+.card-product-img {
+  width: 85%; height: auto; max-height: 190px; object-fit: contain;
+  position: relative; z-index: 1; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1), filter 0.6s ease;
+}
+.vehicle-card:hover .card-product-img { transform: scale(1.08) translateY(-4px); filter: drop-shadow(0 16px 40px rgba(0,229,255,0.15)); }
+.card-image-placeholder {
+  font-family: var(--font-display); font-size: 52px; font-weight: 900;
+  color: rgba(255,255,255,0.04); letter-spacing: 6px; position: relative; z-index: 1;
+  transition: all 0.5s ease; user-select: none;
+}
+.vehicle-card:hover .card-product-img {
+  width: 85%; height: auto; max-height: 190px; object-fit: contain;
+  position: relative; z-index: 1; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1), filter 0.6s ease;
+}
+.vehicle-card:hover .card-product-img { transform: scale(1.08) translateY(-4px); filter: drop-shadow(0 16px 40px rgba(0,229,255,0.15)); }
+.card-image-placeholder { color: rgba(0,229,255,0.08); letter-spacing: 10px; }
+.card-badge {
+  position: absolute; top: 18px; right: 18px; z-index: 2;
+  font-family: var(--font-mono); font-size: 8px; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--neon-cyan);
+  background: rgba(0,229,255,0.06); border: 1px solid rgba(0,229,255,0.15);
+  padding: 7px 14px; backdrop-filter: blur(8px);
+}
+.card-body { padding: 28px 28px 24px; }
+.card-model { font-family: var(--font-display); font-size: 18px; font-weight: 700; letter-spacing: 3px; margin-bottom: 3px; }
+.card-type { font-family: var(--font-mono); font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 22px; }
+.card-specs { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; padding-top: 22px; border-top: 1px solid var(--border-subtle); }
+.spec-value { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--text-primary); line-height: 1; }
+.spec-value .spec-unit { font-size: 9px; font-weight: 500; color: var(--neon-cyan); margin-left: 3px; opacity: 0.7; }
+.spec-label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; }
+.card-cta {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border-subtle);
+}
+.card-cta-text {
+  font-family: var(--font-display); font-size: 9px; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--neon-cyan); transition: all 0.4s ease;
+}
+.vehicle-card:hover .card-cta-text { letter-spacing: 6px; }
+.card-cta-arrow {
+  width: 34px; height: 34px; border: 1px solid var(--border-subtle);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-dim); transition: all 0.4s cubic-bezier(0.16,1,0.3,1); font-size: 13px;
+}
+.vehicle-card:hover .card-cta-arrow {
+  background: var(--neon-cyan); border-color: var(--neon-cyan); color: var(--bg-deep);
+  box-shadow: 0 0 20px var(--neon-cyan-dim);
+}
+
+/* TECH */
+.tech {
+  padding: 160px 0; background: var(--bg-dark);
+  border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);
+  position: relative;
+}
+.tech::before {
+  content: ''; position: absolute; top: 0; right: 0; width: 50%; height: 100%;
+  background: radial-gradient(ellipse at 80% 40%, var(--neon-cyan-glow), transparent 60%);
+  pointer-events: none;
+}
+.tech-top { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; margin-bottom: 100px; position: relative; }
+.tech-image {
+  position: relative; height: 440px; overflow: hidden;
+  border: 1px solid var(--border-subtle); transition: border-color 0.5s ease;
+}
+.tech-image:hover { border-color: var(--border-hover); }
+.tech-image img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.85) contrast(1.15); transition: transform 1s ease; }
+.tech-image:hover img { transform: scale(1.04); }
+.tech-image::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(4,4,8,0.4), transparent 60%);
+}
+.tech-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; position: relative; }
+.tech-item {
+  padding: 44px 36px; border: 1px solid var(--border-subtle); background: var(--bg-card);
+  transition: all 0.5s cubic-bezier(0.16,1,0.3,1); position: relative; overflow: hidden;
+}
+.tech-item::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 0; height: 2px;
+  background: var(--neon-cyan); transition: width 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.tech-item:hover::before { width: 100%; }
+.tech-item:hover { border-color: var(--border-hover); background: var(--bg-card-hover); transform: translateY(-4px); }
+.tech-number {
+  font-family: var(--font-display); font-size: 52px; font-weight: 900;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), transparent);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  line-height: 1; margin-bottom: 28px; transition: all 0.4s ease;
+}
+.tech-item:hover .tech-number {
+  background: linear-gradient(180deg, var(--neon-cyan-dim), transparent);
+  -webkit-background-clip: text; background-clip: text;
+}
+.tech-item-title { font-family: var(--font-display); font-size: 14px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; }
+.tech-item-desc { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height: 1.75; }
+
+/* CUSTOM */
+.custom { padding: 160px 0; }
+.custom-options { display: grid; grid-template-columns: repeat(5,1fr); gap: 16px; margin-top: 72px; }
+.custom-option {
+  text-align: center; padding: 48px 20px; border: 1px solid var(--border-subtle);
+  background: var(--bg-card); transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+  position: relative; overflow: hidden;
+}
+.custom-option::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 0%, var(--neon-cyan-glow), transparent 70%);
+  opacity: 0; transition: opacity 0.4s ease;
+}
+.custom-option:hover::before { opacity: 1; }
+.custom-option:hover { border-color: var(--border-hover); transform: translateY(-6px); }
+.custom-icon {
+  width: 48px; height: 48px; margin: 0 auto 24px; display: flex; align-items: center; justify-content: center;
+  position: relative; z-index: 1; border: 1px solid var(--neon-cyan-dim); border-radius: 50%;
+  transition: all 0.4s ease;
+}
+.custom-icon svg { width: 22px; height: 22px; stroke: var(--neon-cyan); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.custom-option:hover .custom-icon { border-color: var(--neon-cyan); box-shadow: 0 0 20px var(--neon-cyan-dim); background: rgba(0,229,255,0.06); }
+.custom-option-title { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; position: relative; z-index: 1; }
+.custom-option-desc { font-size: 13px; color: var(--text-dim); position: relative; z-index: 1; }
+
+/* FINAL CTA */
+.final-cta { padding: 180px 0; text-align: center; position: relative; overflow: hidden; }
+.final-cta::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 50% 40% at 50% 50%, var(--neon-cyan-glow), transparent);
+}
+.final-cta::after {
+  content: ''; position: absolute; top: 50%; left: 50%; width: 600px; height: 600px;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(0,229,255,0.04); border-radius: 50%;
+  animation: ctaRing 10s linear infinite;
+}
+@keyframes ctaRing { from { transform: translate(-50%,-50%) rotate(0deg) scale(1); opacity: 0.5; } to { transform: translate(-50%,-50%) rotate(360deg) scale(1.1); opacity: 0.2; } }
+.final-cta .section-title { position: relative; z-index: 2; font-size: clamp(36px,5vw,68px); }
+.final-cta p { position: relative; z-index: 2; font-size: 18px; color: var(--text-secondary); max-width: 460px; margin: 0 auto 52px; line-height: 1.7; }
+.final-cta .btn-primary { position: relative; z-index: 2; }
+
+/* FOOTER */
+footer { border-top: 1px solid var(--border-subtle); padding: 72px 0 40px; background: var(--bg-deep); }
+.footer-grid { display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 64px; }
+.footer-brand { font-family: var(--font-display); font-size: 18px; font-weight: 900; letter-spacing: 8px; margin-bottom: 20px; }
+.footer-brand span { color: var(--neon-cyan); }
+.footer-desc { font-size: 14px; color: var(--text-dim); line-height: 1.8; max-width: 280px; }
+.footer-col-title { font-family: var(--font-display); font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 24px; color: var(--text-primary); }
+.footer-col a { display: block; font-size: 14px; color: var(--text-dim); text-decoration: none; margin-bottom: 14px; transition: all 0.3s ease; }
+.footer-col a:hover { color: var(--neon-cyan); padding-left: 6px; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 40px; border-top: 1px solid var(--border-subtle); }
+.footer-bottom p { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); letter-spacing: 3px; }
+
+.scanlines {
+  position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.015) 3px, rgba(0,0,0,0.015) 4px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .container { padding: 0 32px; }
+  .philosophy-grid { grid-template-columns: 1fr; gap: 48px; }
+  .philosophy-visual { height: 400px; }
+  .tech-top { grid-template-columns: 1fr; gap: 48px; }
+  .tech-image { height: 320px; }
+  .tech-grid { grid-template-columns: 1fr 1fr; }
+  .custom-options { grid-template-columns: repeat(3,1fr); }
+  .stats-grid { grid-template-columns: repeat(2,1fr); gap: 40px; }
+  .stat-item::after { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .immersive-banner { height: 55vh; min-height: 400px; }
+  .immersive-banner-content { left: 48px; bottom: 60px; }
+}
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  nav { padding: 16px 20px; }
+  .nav-links { display: none; }
+  .hero-content { padding: 0 20px; }
+  .vehicle-grid { grid-template-columns: 1fr; }
+  .tech-grid { grid-template-columns: 1fr; }
+  .custom-options { grid-template-columns: 1fr 1fr; }
+  .catalogue-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .catalogue-header p { text-align: left; }
+  .hero-ctas { flex-direction: column; align-items: flex-start; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .immersive-banner-content { left: 20px; bottom: 32px; max-width: 90%; }
+  .philosophy, .tech, .custom, .catalogue { padding: 100px 0; }
+}
+</style>
+</head>
+<body>
+<div class="scanlines"></div>
+
+<nav id="mainNav">
+  <a href="#" class="nav-logo">VOLT<span>ARC</span></a>
+  <ul class="nav-links">
+    <li><a href="#motos">Motos</a></li>
+    <li><a href="#scooters">Scooters</a></li>
+    <li><a href="#tech">Technologie</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta"><span>Demander un devis</span></a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="assets/img/hero-moto.png" alt="VOLTARC Electric Motorcycle" />
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-particles"></div>
+  <div class="hero-content">
+    <p class="hero-pre">Electric Performance</p>
+    <h1 class="hero-title">REDEFINE<br><span class="accent">MOTION</span></h1>
+    <p class="hero-sub">Motos et scooters 100% électriques. Puissance brute, zéro émission, design sans compromis.</p>
+    <div class="hero-ctas">
+      <a href="#motos" class="btn-primary">Explorer la gamme</a>
+      <a href="#tech" class="btn-ghost">Notre technologie</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- STATS -->
+<section class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal"><div class="stat-number" data-target="10" data-suffix="kW">0<span class="stat-unit">kW</span></div><div class="stat-label">Puissance max</div></div>
+      <div class="stat-item reveal reveal-delay-1"><div class="stat-number" data-target="120" data-suffix="km/h">0<span class="stat-unit">km/h</span></div><div class="stat-label">Vitesse max</div></div>
+      <div class="stat-item reveal reveal-delay-2"><div class="stat-number" data-target="150" data-suffix="km">0<span class="stat-unit">km</span></div><div class="stat-label">Autonomie</div></div>
+      <div class="stat-item reveal reveal-delay-3"><div class="stat-number" data-target="16" data-suffix="+">0<span class="stat-unit">+</span></div><div class="stat-label">Modèles</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+  <div class="container">
+    <div class="philosophy-grid">
+      <div class="philosophy-visual reveal">
+        <img src="assets/img/rider-lifestyle.png" alt="VOLTARC rider" />
+        <div class="visual-tag">// Born to ride</div>
+      </div>
+      <div class="philosophy-text">
+        <div class="section-label reveal">Notre vision</div>
+        <h2 class="section-title reveal reveal-delay-1">L'avenir se<br>conduit <span class="glow-text" style="color:var(--neon-cyan)">aujourd'hui</span></h2>
+        <p class="reveal reveal-delay-2"><strong>VOLTARC</strong> repousse les limites de la mobilité électrique. Chaque véhicule est conçu pour offrir une expérience de conduite viscérale — un mariage entre technologie de pointe et design radical.</p>
+        <p class="reveal reveal-delay-3">De la moto sportive au scooter urbain, notre gamme couvre tous les usages avec une obsession commune : la performance sans compromis environnemental.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOTOS -->
+<section class="catalogue" id="motos">
+  <div class="container">
+    <div class="catalogue-header">
+      <div><div class="section-label reveal">Collection</div><h2 class="section-title reveal reveal-delay-1">Electric<br>Motorcycles</h2></div>
+      <p class="reveal reveal-delay-2">Puissance brute et adrénaline pure. Conçues pour dominer la route.</p>
+    </div>
+    <div class="vehicle-grid">
+      <div class="vehicle-card reveal"><div class="card-image"><div class="card-badge">Flagship</div><img src="assets/img/r1.png" alt="VOLTARC R1" class="card-product-img" /></div><div class="card-body"><div class="card-model">R1 SERIES</div><div class="card-type">Sport / Performance</div><div class="card-specs"><div class="spec-item"><div class="spec-value">10<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">120<span class="spec-unit">km/h</span></div><div class="spec-label">Vitesse</div></div><div class="spec-item"><div class="spec-value">LED</div><div class="spec-label">Display</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
+      <div class="vehicle-card reveal reveal-delay-1"><div class="card-image"><div class="card-badge">Sport</div><img src="assets/img/g8.png" alt="VOLTARC G8" class="card-product-img" /></div><div class="card-body"><div class="card-model">G8 SERIES</div><div class="card-type">Sport / Touring</div><div class="card-specs"><div class="spec-item"><div class="spec-value">10<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">120<span class="spec-unit">km/h</span></div><div class="spec-label">Vitesse</div></div><div class="spec-item"><div class="spec-value">LED</div><div class="spec-label">Display</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
+      <div class="vehicle-card reveal reveal-delay-2"><div class="card-image"><div class="card-badge">Roadster</div><img src="assets/img/t4.png" alt="VOLTARC T4" class="card-product-img" /></div><div class="card-body"><div class="card-model">T4 SERIES</div><div class="card-type">Roadster / Street</div><div class="card-specs"><div class="spec-item"><div class="spec-value">10<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">120<span class="spec-unit">km/h</span></div><div class="spec-label">Vitesse</div></div><div class="spec-item"><div class="spec-value">LED</div><div class="spec-label">Display</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
+      <div class="vehicle-card reveal reveal-delay-3"><div class="card-image"><div class="card-badge">Racing</div><img src="assets/img/rz.png" alt="VOLTARC RZ" class="card-product-img" /></div><div class="card-body"><div class="card-model">RZ SERIES</div><div class="card-type">Racing / Track</div><div class="card-specs"><div class="spec-item"><div class="spec-value">10<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">120<span class="spec-unit">km/h</span></div><div class="spec-label">Vitesse</div></div><div class="spec-item"><div class="spec-value">LED</div><div class="spec-label">Display</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- IMMERSIVE BANNER -->
+<section class="immersive-banner">
+  <img src="assets/img/scooter-urban.png" alt="VOLTARC Scooter" />
+  <div class="immersive-banner-content">
+    <div class="section-label">Urban Mobility</div>
+    <h2>La ville vous<br>appartient</h2>
+    <p>Faufilez-vous, stationnez partout, rechargez chez vous. Le trajet quotidien réinventé.</p>
+  </div>
+</section>
+
+<!-- SCOOTERS -->
+<section class="catalogue" id="scooters" style="background:var(--bg-dark);">
+  <div class="container">
+    <div class="catalogue-header">
+      <div><div class="section-label reveal">Collection</div><h2 class="section-title reveal reveal-delay-1">Electric<br>Scooters</h2></div>
+      <p class="reveal reveal-delay-2">Agilité urbaine, style affirmé. Le futur du trajet quotidien.</p>
+    </div>
+    <div class="vehicle-grid">
+      <div class="vehicle-card reveal"><div class="card-image"><div class="card-badge">Premium</div><img src="assets/img/tango.png" alt="VOLTARC Tango" class="card-product-img" /></div><div class="card-body"><div class="card-model">TANGO</div><div class="card-type">Grand Tourer / Premium</div><div class="card-specs"><div class="spec-item"><div class="spec-value">4<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">90<span class="spec-unit">km</span></div><div class="spec-label">Autonomie</div></div><div class="spec-item"><div class="spec-value">72<span class="spec-unit">V</span></div><div class="spec-label">Batterie</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
+      <div class="vehicle-card reveal reveal-delay-1"><div class="card-image"><div class="card-badge">Performance</div><img src="assets/img/tsl.png" alt="VOLTARC TSL" class="card-product-img" /></div><div class="card-body"><div class="card-model">TSL</div><div class="card-type">Sport / Performance</div><div class="card-specs"><div class="spec-item"><div class="spec-value">4<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">72<span class="spec-unit">V</span></div><div class="spec-label">Batterie</div></div><div class="spec-item"><div class="spec-value">50<span class="spec-unit">A</span></div><div class="spec-label">Contrôleur</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
+      <div class="vehicle-card reveal reveal-delay-2"><div class="card-image"><div class="card-badge">Iconic</div><img src="assets/img/vespa.png" alt="VOLTARC Vespa Style" class="card-product-img" /></div><div class="card-body"><div class="card-model">VESPA STYLE</div><div class="card-type">Retro / Urban</div><div class="card-specs"><div class="spec-item"><div class="spec-value">1.5<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">75<span class="spec-unit">km</span></div><div class="spec-label">Autonomie</div></div><div class="spec-item"><div class="spec-value">LED</div><div class="spec-label">Display</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
+      <div class="vehicle-card reveal reveal-delay-3"><div class="card-image"><div class="card-badge">Urban</div><img src="assets/img/h1.png" alt="VOLTARC H1" class="card-product-img" /></div><div class="card-body"><div class="card-model">H1</div><div class="card-type">Urban / Commuter</div><div class="card-specs"><div class="spec-item"><div class="spec-value">1.5<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">90<span class="spec-unit">km</span></div><div class="spec-label">Autonomie</div></div><div class="spec-item"><div class="spec-value">LCD</div><div class="spec-label">Display</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
+      <div class="vehicle-card reveal"><div class="card-image"><div class="card-badge">Bestseller</div><img src="assets/img/lg.png" alt="VOLTARC LG" class="card-product-img" /></div><div class="card-body"><div class="card-model">LG SERIES</div><div class="card-type">Polyvalent / Confort</div><div class="card-specs"><div class="spec-item"><div class="spec-value">1.5<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">75<span class="spec-unit">km</span></div><div class="spec-label">Autonomie</div></div><div class="spec-item"><div class="spec-value">LED</div><div class="spec-label">Display</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
+      <div class="vehicle-card reveal reveal-delay-1"><div class="card-image"><div class="card-badge">Touring</div><img src="assets/img/rm.png" alt="VOLTARC RM" class="card-product-img" /></div><div class="card-body"><div class="card-model">RM</div><div class="card-type">Touring / Confort</div><div class="card-specs"><div class="spec-item"><div class="spec-value">2<span class="spec-unit">kW</span></div><div class="spec-label">Moteur</div></div><div class="spec-item"><div class="spec-value">100<span class="spec-unit">km</span></div><div class="spec-label">Autonomie</div></div><div class="spec-item"><div class="spec-value">72<span class="spec-unit">V</span></div><div class="spec-label">Batterie</div></div></div><div class="card-cta"><span class="card-cta-text">Découvrir</span><div class="card-cta-arrow">→</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH -->
+<section class="tech" id="tech">
+  <div class="container">
+    <div class="tech-top">
+      <div>
+        <div class="section-label reveal">Ingénierie</div>
+        <h2 class="section-title reveal reveal-delay-1">Technologie<br><span class="glow-text" style="color:var(--neon-cyan)">de pointe</span></h2>
+        <p class="reveal reveal-delay-2" style="font-size:17px;color:var(--text-secondary);font-weight:300;line-height:1.85;max-width:460px;">Chaque composant est pensé pour la performance, la durabilité et l'expérience de conduite. Aucun compromis.</p>
+      </div>
+      <div class="tech-image reveal reveal-delay-2">
+        <img src="assets/img/tech-dashboard.png" alt="VOLTARC dashboard" />
+      </div>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-item reveal"><div class="tech-number">01</div><div class="tech-item-title">Moteurs Brushless</div><div class="tech-item-desc">Moteurs haute performance de 450W à 10 000W. Couple instantané, silence absolu, fiabilité extrême.</div></div>
+      <div class="tech-item reveal reveal-delay-1"><div class="tech-number">02</div><div class="tech-item-title">Batterie Lithium</div><div class="tech-item-desc">Packs lithium dernière génération avec système de gestion intelligent. Jusqu'à 150 km d'autonomie.</div></div>
+      <div class="tech-item reveal reveal-delay-2"><div class="tech-number">03</div><div class="tech-item-title">Freinage Régénératif</div><div class="tech-item-desc">Récupération d'énergie au freinage. Freins à disque avant et arrière sur chaque modèle.</div></div>
+      <div class="tech-item reveal reveal-delay-3"><div class="tech-number">04</div><div class="tech-item-title">Dashboards LED</div><div class="tech-item-desc">Tableaux de bord numériques LED/LCD avec connectivité. Toutes les données en un coup d'œil.</div></div>
+      <div class="tech-item reveal reveal-delay-4"><div class="tech-number">05</div><div class="tech-item-title">Charge Rapide</div><div class="tech-item-desc">Chargeur 5A de série. Compatible Type 2 en option. Charge complète en quelques heures.</div></div>
+      <div class="tech-item reveal reveal-delay-5"><div class="tech-number">06</div><div class="tech-item-title">Démarrage Intelligent</div><div class="tech-item-desc">One-button start, détection automatique du faisceau, système anti-démarrage intempestif.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOM -->
+<section class="custom">
+  <div class="container">
+    <div class="section-label reveal">Personnalisation</div>
+    <h2 class="section-title reveal reveal-delay-1">Votre machine,<br>vos règles</h2>
+    <div class="custom-options">
+      <div class="custom-option reveal"><span class="custom-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span><div class="custom-option-title">Charge Type 2</div><div class="custom-option-desc">Recharge universelle 25A</div></div>
+      <div class="custom-option reveal reveal-delay-1"><span class="custom-icon"><svg viewBox="0 0 24 24"><path d="M12 2c0 4-4 6-4 10a4 4 0 0 0 8 0c0-4-4-6-4-10z"/><path d="M12 22v-4"/></svg></span><div class="custom-option-title">Poignées chauffantes</div><div class="custom-option-desc">Confort quatre saisons</div></div>
+      <div class="custom-option reveal reveal-delay-2"><span class="custom-icon"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="14" r="4"/><line x1="12" y1="6" x2="12.01" y2="6"/></svg></span><div class="custom-option-title">Bluetooth Speaker</div><div class="custom-option-desc">Son intégré au guidon</div></div>
+      <div class="custom-option reveal reveal-delay-3"><span class="custom-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></span><div class="custom-option-title">Faisceau Auto</div><div class="custom-option-desc">Détection automatique</div></div>
+      <div class="custom-option reveal reveal-delay-4"><span class="custom-icon"><svg viewBox="0 0 24 24"><path d="M18.364 5.636a9 9 0 0 1 0 12.728M15.536 8.464a5 5 0 0 1 0 7.072"/><circle cx="6" cy="12" r="3"/><line x1="8.5" y1="10.5" x2="15.5" y2="10.5"/></svg></span><div class="custom-option-title">One-Touch Start</div><div class="custom-option-desc">Démarrage d'un geste</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="contact">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center;">Contact</div>
+    <h2 class="section-title reveal reveal-delay-1">Prêt à passer<br>à l'<span class="glow-text" style="color:var(--neon-cyan)">électrique</span> ?</h2>
+    <p class="reveal reveal-delay-2">Contactez notre équipe pour un devis personnalisé ou une démonstration privée.</p>
+    <a href="mailto:contact@voltarc.com" class="btn-primary reveal reveal-delay-3">Nous contacter</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-brand">VOLT<span>ARC</span></div><p class="footer-desc">Redefine Motion. Motos et scooters 100% électriques pour une mobilité sans compromis.</p></div>
+      <div class="footer-col"><div class="footer-col-title">Motos</div><a href="#">R1 Series</a><a href="#">G8 Series</a><a href="#">T4 Series</a><a href="#">RZ Series</a></div>
+      <div class="footer-col"><div class="footer-col-title">Scooters</div><a href="#">Tango</a><a href="#">TSL</a><a href="#">Vespa Style</a><a href="#">H1 / LG / RM</a></div>
+      <div class="footer-col"><div class="footer-col-title">Entreprise</div><a href="#">Notre vision</a><a href="#">Technologie</a><a href="#">Personnalisation</a><a href="#">Contact</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 VOLTARC — Tous droits réservés</p><p>Redefine Motion™</p></div>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(e => { e.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Nav
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.pageYOffset > 80));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) { e.preventDefault(); const t = document.querySelector(this.getAttribute('href')); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+});
+
+// Counter animation
+let counterDone = false;
+function animateCounters() {
+  if (counterDone) return;
+  counterDone = true;
+  document.querySelectorAll('.stat-number').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const duration = 2200;
+    const startTime = performance.now();
+    function update(now) {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      el.innerHTML = Math.floor(eased * target) + '<span class="stat-unit">' + suffix + '</span>';
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  });
+}
+const so = new IntersectionObserver(e => { e.forEach(entry => { if (entry.isIntersecting) { animateCounters(); so.disconnect(); } }); }, { threshold: 0.4 });
+const sb = document.querySelector('.stats-bar'); if (sb) so.observe(sb);
+
+// Parallax hero
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      const s = window.pageYOffset;
+      const heroImg = document.querySelector('.hero-bg img');
+      if (heroImg && s < window.innerHeight) {
+        heroImg.style.transform = 'scale(' + (1 + s * 0.0001) + ') translateY(' + (s * 0.15) + 'px)';
+      }
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+</script>
+</body>
+</html>
